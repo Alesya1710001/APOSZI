@@ -1,0 +1,31 @@
+{% extends 'poster/base.html' %}
+{% load static %}
+{% block content %}
+
+ <div class="container all_movies_list">
+        {% for movie in movies %}
+        <div class="item">
+            <div class="information part">
+                <div class="item_title info">
+                    <p>{{movie.movie_name}}</p>
+                </div>
+                <div class="item_year info">
+                    <p>{{movie.year}}</p>
+                </div>
+                <div class="item_genre info">
+                    <p>{{movie.genre}}</p>
+                </div>
+            </div>
+            <div class="button-wrapper part">
+             <a class="btn btn-gradient" href="{% url 'movie_detail' pk=movie.pk %}">Подробнее</a>
+            </div>
+        </div>
+     {% endfor %}
+
+      <div class="button-wrapper part">
+             <a class="btn btn-gradient" href="#">Добавить</a>
+      </div>
+ </div>
+
+
+{% endblock content %}

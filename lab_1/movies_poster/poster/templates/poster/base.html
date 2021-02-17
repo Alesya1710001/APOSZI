@@ -31,7 +31,7 @@
 
            <div class="choose_bar">
                <div class="container">
-                   <a href="#">Афиша</a>
+                   <a href="{% url 'all_movies' %}">Афиша</a>
                    <a href="{% url 'about_us' %}">О нас</a>
                    <a href="{% url 'contact' %}">Контакты</a>
                    <a href="#">Войти</a>
@@ -41,7 +41,6 @@
 
         {% block content %}
         {% endblock %}
-
 
 
         <footer>

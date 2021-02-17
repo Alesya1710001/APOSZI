@@ -580,3 +580,34 @@ footer .part{
     border-bottom: 2px solid blueviolet;
     padding-bottom: 3%;
 }
+
+.all_movies_list{
+    margin-top: 7%;
+
+}
+
+.line{
+    display:flex;
+}
+
+.line p:first-child{
+    font-weight: bold;
+    margin-bottom: 30px;
+}
+
+.all_information{
+    margin-bottom: 50px;
+}
+
+.about_movie{
+    font-size: 20px;
+    font-style: italic;
+}
+
+.btn_bar{
+    text-align: center;
+}
+
+.btn_bar a{
+    margin: 30px;
+}

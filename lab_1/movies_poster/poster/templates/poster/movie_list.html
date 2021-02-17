@@ -33,14 +33,14 @@
                 </div>
             </div>
             <div class="button-wrapper part">
-                <button href="#" class="btn btn-gradient">Подробнее</button>
+               <a class="btn btn-gradient" href="{% url 'movie_detail' pk=movie.pk %}">Подробнее</a>
             </div>
         </div>
         {% endfor %}
 
 
         <div class="all">
-            <a href="#" class="btn btn-gradient">Вся афиша</a>
+            <a href="{% url 'all_movies' %}" class="btn btn-gradient">Вся афиша</a>
         </div>
     </div>
 </div>

@@ -1,0 +1,59 @@
+{% extends 'poster/base.html' %}
+{% load static %}
+{% block content %}
+
+ <div class="container">
+
+     <div class="title">
+        <p>{{movie.movie_name}}</p>
+     </div>
+
+     <div class="all_information">
+         <div class="year line">
+             <p> Год: &nbsp;</p>
+             <p>{{movie.year}}</p>
+         </div>
+         <div class="genre line">
+         <p>Жанр:&nbsp; </p>
+             {% for genre in genres %}
+         <p> {{genre}} &nbsp; &nbsp; </p>
+             {% endfor %}
+         </div>
+
+         <div class="producer line">
+              <p>Режиссер:&nbsp; </p>
+         {% for producer in producers %}
+             <p> {{producer}} &nbsp; &nbsp; </p>
+             {% endfor %}
+         </div>
+
+
+         <div class="actor line">
+             <p>В главных ролях: &nbsp; </p>
+         {% for actor in actors %}
+         <p> {{actor}} &nbsp; &nbsp; </p>
+         {% endfor %}
+         </div>
+
+
+         <div class="country line">
+             <p>Страна: &nbsp;</p>
+         {% for country in countries %}
+         <p> {{country}}&nbsp; &nbsp; </p>
+         {% endfor %}
+         </div>
+
+          <div class="about_movie">
+         <p>{{movie.plot}}</p>
+         </div>
+
+
+     </div>
+     <div class="btn_bar">
+         <a href="#" class="btn btn-gradient">Удалить</a>
+         <a href="#" class="btn btn-gradient">Изменить</a>
+     </div>
+ </div>
+
+
+{% endblock content %}
