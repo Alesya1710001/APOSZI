@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+{% load static %}
+    <html>
+        <head>
+
+            <title>
+                Кинотеатр "Чудории"
+            </title>
+            <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+            <link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}">
+            <link rel='stylesheet prefetch' href='http://fonts.googleapis.com/css?family=Luckiest+Guy'>
+
+        </head>
+
+        <body>
+            <header>
+                <div class="container">
+                        <div class="center-outer part">
+                            <div class="center-inner">
+                                <div class="bubbles">
+                                    <a href="{% url 'movie_list' %}">CHUDORII</a>
+                                </div>
+                            </div>
+                        </div>
+                        <script src='http://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.2/jquery.min.js'></script>
+                        <script src="{% static 'js/bubble-text.js' %}"></script>
+
+                        <img class="part" srcset="{% static 'images/fines.jpg' %}">
+                </div>
+            </header>
+
+           <div class="choose_bar">
+               <div class="container">
+                   <a href="#">Афиша</a>
+                   <a href="{% url 'about_us' %}">О нас</a>
+                   <a href="{% url 'contact' %}">Контакты</a>
+                   <a href="#">Войти</a>
+               </div>
+
+            </div>
+
+        {% block content %}
+        {% endblock %}
+
+
+
+        <footer>
+            <div class="contact_inform container">
+                <div class="phone left part">
+                    <a href="tel:+375298619902">+375 (29) 861 - 99 - 02</a>
+                    <a href="tel:+375333164922">+375 (33) 316 - 49 - 22</a>
+                </div>
+
+                <div class="right part">
+                    <div class="address">
+                        <p>г. Минск, ул. Л. Беды, д.4к1, кв. 601-б</p>
+                    </div>
+                    <div class="developers">
+                        <p>Created by us</p>
+                    </div>
+                </div>
+
+            </div>
+         <img class="graviti" src="{% static 'images/graviti.png' %}">
+
+        </footer>
+
+
+        </body>
+    </html>
