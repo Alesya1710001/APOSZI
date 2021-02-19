@@ -611,3 +611,25 @@ footer .part{
 .btn_bar a{
     margin: 30px;
 }
+
+.modal-content{
+    background: cornflowerblue;
+}
+
+.modal-body label {
+    color: black;
+    width: 25%;
+}
+
+.one_label{
+    margin-top: 30px;
+}
+
+.one_label i {
+    margin: 5px;
+}
+
+.add_many_to_many button{
+    padding:0;
+    margin: 20px;
+}

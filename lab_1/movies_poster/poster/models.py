@@ -1,4 +1,6 @@
 from django.db import models
+from django.forms import ModelForm
+from django import forms
 
 
 class Genre(models.Model):
@@ -61,3 +63,15 @@ class Movie(models.Model):
     def __str__(self):
         return self.movie_name
 
+
+class AddMovieForm(ModelForm):
+    class Meta:
+        model = Movie
+        fields = ['movie_name',
+                  'year',
+                  'type',
+                  'genre',
+                  'country',
+                  'producer',
+                  'actor',
+                  'plot']

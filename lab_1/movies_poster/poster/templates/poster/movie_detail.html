@@ -9,10 +9,19 @@
      </div>
 
      <div class="all_information">
+
+         <div class="type line">
+             <p>{{movie.get_type_display}}</p>
+         </div>
+
+
          <div class="year line">
              <p> Год: &nbsp;</p>
              <p>{{movie.year}}</p>
          </div>
+
+
+
          <div class="genre line">
          <p>Жанр:&nbsp; </p>
              {% for genre in genres %}
