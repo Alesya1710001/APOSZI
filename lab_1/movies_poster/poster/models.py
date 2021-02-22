@@ -75,3 +75,5 @@ class AddMovieForm(ModelForm):
                   'producer',
                   'actor',
                   'plot']
+
+
