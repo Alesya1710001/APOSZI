@@ -7,8 +7,6 @@ import pdb
 from poster.models import Movie, AddMovieForm, Actor, Producer, Country
 
 
-logger = logging.getLogger(__name__)
-
 
 def movie_list(request):
     movies = Movie.objects.all()[:3]
