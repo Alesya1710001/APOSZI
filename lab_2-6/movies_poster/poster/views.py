@@ -3,11 +3,337 @@ from json.decoder import JSONDecodeError
 from django.http import HttpResponse, HttpResponseRedirect, JsonResponse
 from django.shortcuts import render, get_object_or_404
 from django.urls import reverse
-import pdb
-from poster.models import Movie, AddMovieForm, Actor, Producer, Country
+from django.shortcuts import get_object_or_404
+from rest_framework import viewsets, status
+from rest_framework.response import Response
+
+from .serializers import *
+from poster.models import Movie, Actor, Producer, Country, Genre
 
 
+class MoviesViewSet(viewsets.ModelViewSet):
+    serializer_class = MoviesSerializer
 
+    def get_queryset(self):
+        movies = Movie.objects.all()
+        return movies
+
+    def create(self, request, *args, **kwargs):
+        data = request.data
+
+        new_movie = Movie.objects.create(movie_name=data['movie_name'], plot=data['plot'],
+                                         type=data['type'], year=data['year'])
+        new_movie.save()
+
+        for genre in data['genre']:
+            try:
+                genre_obj = Genre.objects.get(genre_name=genre['genre_name'])
+            except:
+                new_genre = Genre.objects.create(genre_name=genre['genre_name'])
+                new_genre.save()
+                genre_obj = new_genre
+
+            new_movie.genre.add(genre_obj)
+
+        for actor in data['actor']:
+            try:
+                actor_obj = Actor.objects.get(actor_name=actor['actor_name'])
+            except:
+                new_actor = Actor.objects.create(actor_name=actor['actor_name'])
+                new_actor.save()
+                actor_obj = new_actor
+
+            new_movie.actor.add(actor_obj)
+
+        for producer in data['producer']:
+            try:
+                producer_obj = Producer.objects.get(surname=producer['surname'])
+            except:
+                new_producer = Producer.objects.create(surname=producer['surname'])
+                new_producer.save()
+                producer_obj = new_producer
+
+            new_movie.producer.add(producer_obj)
+
+        for country in data['country']:
+            try:
+                country_obj = Country.objects.get(country_name=country['country_name'])
+            except:
+                new_country = Country.objects.create(country_name=country['country_name'])
+                new_country.save()
+
+            new_movie.country.add(country_obj)
+
+        serializer = MoviesSerializer(new_movie)
+
+        return Response(serializer.data)
+
+    def update(self, request, *args, **kwargs):
+        movie_obj = self.get_object()
+        data = request.data
+
+        if 'genre' in data:
+            movie_obj.genre.clear()
+
+            for genre in data['genre']:
+                try:
+                    genre_obj = Genre.objects.get(genre_name=genre['genre_name'])
+                except:
+                    new_genre = Genre.objects.create(genre_name=genre['genre_name'])
+                    new_genre.save()
+                    genre_obj = new_genre
+
+                movie_obj.genre.add(genre_obj)
+
+        if 'producer' in data:
+            movie_obj.producer.clear()
+
+            for producer in data['producer']:
+                try:
+                    producer_obj = Producer.objects.get(surname=producer['surname'])
+                except:
+                    new_producer = Producer.objects.create(surname=producer['surname'])
+                    new_producer.save()
+                    producer_obj = new_producer
+
+                movie_obj.producer.add(producer_obj)
+
+        if 'country' in data:
+            movie_obj.country.clear()
+
+            for country in data['country']:
+                try:
+                    country_obj = Country.objects.get(country_name=country['country_name'])
+                except:
+                    new_country = Country.objects.create(country_name=country['country_name'])
+                    new_country.save()
+
+                movie_obj.country.add(country_obj)
+
+        if 'actor' in data:
+            movie_obj.actor.clear()
+
+            for actor in data['actor']:
+                try:
+                    actor_obj = Actor.objects.get(actor_name=actor['actor_name'])
+                except:
+                    new_actor = Actor.objects.create(actor_name=actor['actor_name'])
+                    new_actor.save()
+                    actor_obj = new_actor
+
+                movie_obj.actor.add(actor_obj)
+
+        serializer = MoviesSerializer(
+            instance=movie_obj,
+            data=data
+        )
+
+        serializer.is_valid(raise_exception=True)
+
+        serializer.save()
+
+        return Response(serializer.data)
+
+    def destroy(self, request, *args, **kwargs):
+        instance = self.get_object()
+        self.perform_destroy(instance)
+        return Response(status=status.HTTP_204_NO_CONTENT)
+
+    def perform_destroy(self, instance):
+        instance.delete()
+
+'''
+        movie_name = Movie.objects.get(movie_name=data['movie_name'])
+        movie_obj.movie_name.clean()
+        movie_obj.movie_name.add(movie_name)
+
+        movie_year = Movie.objects.get(year=data['year'])
+        movie_obj.movie_name.clean()
+        movie_obj.movie_name.add(movie_name)
+
+        for genre in data['genre']:
+            genre_obj = Genre.objects.get(genre_name=genre['genre_name'])
+            movie_obj.genre.clean(genre_obj)
+            movie_obj.genre.add(genre_obj)
+
+        movie_obj.movie_name = movie_name
+        movie_obj.year = data['year']
+        movie_obj.type = data['type']
+        movie_obj.actor = data['actor']
+        movie_obj.producer = data['producer']
+        movie_obj.country = data['country']
+        movie_obj.genre = data['genre']
+        movie_obj.plot = data['plot']
+
+        movie_obj.save()
+
+        serializer = MoviesSerializer(movie_obj)
+
+        return Response(serializer.data)
+'''
+
+
+class GenresViewSet(viewsets.ModelViewSet):
+    serializer_class = GenreSerializer
+
+    def get_queryset(self):
+        genres = Genre.objects.all()
+        return genres
+
+    def create(self, request, *args, **kwargs):
+        data = request.data
+
+        new_genre = Genre.objects.create(genre_name=data['genre_name'])
+        new_genre.save()
+
+        serializer = GenreSerializer(new_genre)
+
+        return Response(serializer.data)
+
+    def update(self, request, *args, **kwargs):
+        genre_obj = self.get_object()
+        data = request.data
+
+        serializer = GenreSerializer(
+            instance=genre_obj,
+            data=data
+        )
+
+        serializer.is_valid(raise_exception=True)
+        serializer.save()
+
+        return Response(serializer.data)
+
+    def destroy(self, request, *args, **kwargs):
+        instance = self.get_object()
+        self.perform_destroy(instance)
+        return Response(status=status.HTTP_204_NO_CONTENT)
+
+    def perform_destroy(self, instance):
+        instance.delete()
+
+
+class ActorsViewSet(viewsets.ModelViewSet):
+    serializer_class = ActorSerializer
+
+    def get_queryset(self):
+        actors = Actor.objects.all()
+        return actors
+
+    def create(self, request, *args, **kwargs):
+        data = request.data
+
+        new_actor = Actor.objects.create(actor_name=data['actor_name'])
+        new_actor.save()
+
+        serializer = ActorSerializer(new_actor)
+
+        return Response(serializer.data)
+
+    def update(self, request, *args, **kwargs):
+        actor_obj = self.get_object()
+        data = request.data
+
+        serializer = ActorSerializer(
+            instance=actor_obj,
+            data=data
+        )
+
+        serializer.is_valid(raise_exception=True)
+        serializer.save()
+
+        return Response(serializer.data)
+
+    def destroy(self, request, *args, **kwargs):
+        instance = self.get_object()
+        self.perform_destroy(instance)
+        return Response(status=status.HTTP_204_NO_CONTENT)
+
+    def perform_destroy(self, instance):
+        instance.delete()
+
+
+class ProducersViewSet(viewsets.ModelViewSet):
+    serializer_class = ProducerSerializer
+
+    def get_queryset(self):
+        producers = Producer.objects.all()
+        return producers
+
+    def create(self, request, *args, **kwargs):
+        data = request.data
+
+        new_producer = Producer.objects.create(surname=data['surname'])
+        new_producer.save()
+
+        serializer = ProducerSerializer(new_producer)
+
+        return Response(serializer.data)
+
+    def update(self, request, *args, **kwargs):
+        producer_obj = self.get_object()
+        data = request.data
+
+        serializer = ProducerSerializer(
+            instance=producer_obj,
+            data=data
+        )
+
+        serializer.is_valid(raise_exception=True)
+        serializer.save()
+
+        return Response(serializer.data)
+
+    def destroy(self, request, *args, **kwargs):
+        instance = self.get_object()
+        self.perform_destroy(instance)
+        return Response(status=status.HTTP_204_NO_CONTENT)
+
+    def perform_destroy(self, instance):
+        instance.delete()
+
+
+class CountriesViewSet(viewsets.ModelViewSet):
+    serializer_class = CountrySerializer
+
+    def get_queryset(self):
+        countries = Country.objects.all()
+        return countries
+
+    def create(self, request, *args, **kwargs):
+        data = request.data
+
+        new_country = Country.objects.create(country_name=data['country_name'])
+        new_country.save()
+
+        serializer = CountrySerializer(new_country)
+
+        return Response(serializer.data)
+
+    def update(self, request, *args, **kwargs):
+        country_obj = self.get_object()
+        data = request.data
+
+        serializer = CountrySerializer(
+            instance=country_obj,
+            data=data
+        )
+
+        serializer.is_valid(raise_exception=True)
+        serializer.save()
+
+        return Response(serializer.data)
+
+    def destroy(self, request, *args, **kwargs):
+        instance = self.get_object()
+        self.perform_destroy(instance)
+        return Response(status=status.HTTP_204_NO_CONTENT)
+
+    def perform_destroy(self, instance):
+        instance.delete()
+
+
+'''
 def movie_list(request):
     movies = Movie.objects.all()[:3]
     return render(request, 'poster/movie_list.html', {'movies': movies})
@@ -112,4 +438,4 @@ def delete_movie(request, pk):
     movie = Movie.objects.get(pk=pk)
     movie.delete()
     return HttpResponseRedirect(reverse('all_movies'))
-
+'''
