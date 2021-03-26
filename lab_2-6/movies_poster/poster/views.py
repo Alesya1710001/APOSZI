@@ -1,5 +1,7 @@
 import json
 from json.decoder import JSONDecodeError
+
+from django.core.exceptions import ObjectDoesNotExist
 from django.http import HttpResponse, HttpResponseRedirect, JsonResponse
 from django.shortcuts import render, get_object_or_404
 from django.urls import reverse
@@ -17,7 +19,6 @@ def index(request):
 
 
 class TestView(APIView):
-
     def get(self, request, *args, **kwargs):
         data = [{"id": 1, "name": "Jon"}, {"id": 2, "name": "rita"}]
         return Response(data)
@@ -40,7 +41,7 @@ class MoviesViewSet(viewsets.ModelViewSet):
         for genre in data['genre']:
             try:
                 genre_obj = Genre.objects.get(genre_name=genre['genre_name'])
-            except:
+            except ObjectDoesNotExist:
                 new_genre = Genre.objects.create(genre_name=genre['genre_name'])
                 new_genre.save()
                 genre_obj = new_genre
@@ -50,7 +51,7 @@ class MoviesViewSet(viewsets.ModelViewSet):
         for actor in data['actor']:
             try:
                 actor_obj = Actor.objects.get(actor_name=actor['actor_name'])
-            except:
+            except ObjectDoesNotExist:
                 new_actor = Actor.objects.create(actor_name=actor['actor_name'])
                 new_actor.save()
                 actor_obj = new_actor
@@ -60,7 +61,7 @@ class MoviesViewSet(viewsets.ModelViewSet):
         for producer in data['producer']:
             try:
                 producer_obj = Producer.objects.get(surname=producer['surname'])
-            except:
+            except ObjectDoesNotExist:
                 new_producer = Producer.objects.create(surname=producer['surname'])
                 new_producer.save()
                 producer_obj = new_producer
@@ -70,7 +71,7 @@ class MoviesViewSet(viewsets.ModelViewSet):
         for country in data['country']:
             try:
                 country_obj = Country.objects.get(country_name=country['country_name'])
-            except:
+            except ObjectDoesNotExist:
                 new_country = Country.objects.create(country_name=country['country_name'])
                 new_country.save()
 
@@ -90,7 +91,7 @@ class MoviesViewSet(viewsets.ModelViewSet):
             for genre in data['genre']:
                 try:
                     genre_obj = Genre.objects.get(genre_name=genre['genre_name'])
-                except:
+                except ObjectDoesNotExist:
                     new_genre = Genre.objects.create(genre_name=genre['genre_name'])
                     new_genre.save()
                     genre_obj = new_genre
@@ -103,7 +104,7 @@ class MoviesViewSet(viewsets.ModelViewSet):
             for producer in data['producer']:
                 try:
                     producer_obj = Producer.objects.get(surname=producer['surname'])
-                except:
+                except ObjectDoesNotExist:
                     new_producer = Producer.objects.create(surname=producer['surname'])
                     new_producer.save()
                     producer_obj = new_producer
@@ -116,7 +117,7 @@ class MoviesViewSet(viewsets.ModelViewSet):
             for country in data['country']:
                 try:
                     country_obj = Country.objects.get(country_name=country['country_name'])
-                except:
+                except ObjectDoesNotExist:
                     new_country = Country.objects.create(country_name=country['country_name'])
                     new_country.save()
 
@@ -128,7 +129,7 @@ class MoviesViewSet(viewsets.ModelViewSet):
             for actor in data['actor']:
                 try:
                     actor_obj = Actor.objects.get(actor_name=actor['actor_name'])
-                except:
+                except ObjectDoesNotExist:
                     new_actor = Actor.objects.create(actor_name=actor['actor_name'])
                     new_actor.save()
                     actor_obj = new_actor
