@@ -1,0 +1,33 @@
+version: '3'
+services:
+  web:
+    build: .
+    command: python manage.py runserver 0.0.0.0:8000
+    ports:
+      - 8000:8000
+    env_file:
+      - ./.env.dev
+    depends_on:
+          - db
+    networks:
+      some_network:
+
+  db:
+    image: postgres:12.0-alpine
+    environment:
+      POSTGRES_USER: alesya
+      POSTGRES_PASSWORD: kropka171001
+      POSTGRES_DB: movies_poster
+      PGDATA: /var/lib/postgresql/data/pgdata
+    ports:
+      - 5432:5432
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+    networks:
+      some_network:
+
+networks:
+      some_network:
+
+volumes:
+  pgdata:

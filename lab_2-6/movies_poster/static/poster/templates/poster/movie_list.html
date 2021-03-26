@@ -1,0 +1,48 @@
+{% extends 'poster/base.html' %}
+{% load static %}
+{% block content %}
+<div class="about_company">
+    <div class="container">
+        <div class="text_about">
+            <p>Вас приветствует чудеснейший кинотеатр (для чудеснейших зрителей)!</p>
+            <p>Здесь мы рассказываем Вам чудеснейшие истории на чудеснейшем экране (проекторе в общаге)!</p>
+            <p>Во время просмотра вы получите чудеснейшие эмоции в чудеснейшей компании (нас)!</p>
+            <p>После просмотра мы можем поиграть в настолки и выпить имбирного чаю!</p>
+            <p>Приходите к нам - получайте живые эмоции и рассказывайте всем эти чудесные истории - ЧУДОРИИ!!!
+            </p>
+        </div>
+    </div>
+</div>
+
+
+<img class="malifisenta" src="{% static 'images/malifisenta.png' %}">
+
+<div class="movie_bar">
+    <div class="container movie_items">
+        {% for movie in movies %}
+        <div class="item">
+            <div class="information part">
+                <div class="item_title info">
+                    <p>{{movie.movie_name}}</p>
+                </div>
+                <div class="item_year info">
+                    <p>{{movie.year}}</p>
+                </div>
+                <div class="item_type info">
+                    <p>{{movie.get_type_display}}</p>
+                </div>
+            </div>
+            <div class="button-wrapper part">
+               <a class="btn btn-gradient" href="{% url 'movie_detail' pk=movie.pk %}">Подробнее</a>
+            </div>
+        </div>
+        {% endfor %}
+
+
+        <div class="all">
+            <a href="{% url 'all_movies' %}" class="btn btn-gradient">Вся афиша</a>
+        </div>
+    </div>
+</div>
+
+ {% endblock content %}
