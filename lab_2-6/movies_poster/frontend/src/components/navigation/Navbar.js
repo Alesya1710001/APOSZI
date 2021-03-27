@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
+import style from '../../static/style.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { Link } from 'react-router-dom';
-import style from '../../static/style.css';
 
 function Navbar(){
 
@@ -19,12 +19,25 @@ function Navbar(){
 
   return (
     <div className="App">
+
+         <head>
+            <title>
+                Кинотеатр "Чудории"
+            </title>
+             <link rel="stylesheet" href="https://maxst.icons8.com/vue-static/landings/line-awesome/line-awesome/1.3.0/css/line-awesome.min.css" />
+            <link rel='stylesheet prefetch' href='http://fonts.googleapis.com/css?family=Luckiest+Guy'/>
+        </head>
+
             <header>
                 <div className="container">
-                    <a href="#">CHUDORII</a>
-
-
-                    <img className="part" src="../../static/images/fines.jpg"/>
+                    <div className="center-outer part">
+                            <div className="center-inner">
+                                <div className="bubbles">
+                                    <a href="#">CHUDORII</a>
+                                </div>
+                            </div>
+                        </div>
+                   <img className="part" src="../../static/images/fines.jpg" />
                 </div>
             </header>
 
@@ -52,23 +65,26 @@ function Navbar(){
         </div>
 
 
-        <img className="malifisenta" src="../../static/images/malifisenta.png"/>
+        <img className="malifisenta" src="../../static/images/malifisenta.png"  style={{opacity:"30%"}}/>
 
         <div className="movie_bar">
+
             <div class="container movie_items">
                 {movies.map(m =>(
-                    <div className="item" key={m.id}>
-                        <div className="item_title info">
-                            <p className="part_item">{m.movie_name}</p>
+                    <div className="item" key={m.id} style={{position: "relative", display: "block ruby", width: "100%", padding: "3%",border: "1px solid blueviolet", "margin-bottom": "3%", "background-color": "#1F1F3A", opacity: "90%", "z-index":"1000"}}>
+                        <div class="information part" style={{position: "relative", width: "50%"}}>
+                            <div className="item_title info" style={{"font-size": "18px", "text-transform": "uppercase"}}>
+                                <p>{m.movie_name}</p>
+                            </div>
+                            <div className="item_year info" style={{"font-size": "18px", "text-transform": "uppercase"}}>
+                                <p>{m.year}</p>
+                            </div>
+                            <div className="item_type info" style={{"font-size": "18px", "text-transform": "uppercase"}}>
+                                <p>{m.type}</p>
+                            </div>
                         </div>
-                        <div className="item_year info">
-                            <p className="part_item">{m.year}</p>
-                        </div>
-                        <div className="item_type info">
-                            <p className="part_item">{m.type}</p>
-                        </div>
-                        <div className="button-wrapper part">
-                            <a className="btn btn-gradient" href="#">Подробнее</a>
+                        <div className="button-wrapper part" style={{position: "relative", width: "50%",bottom: "25px"}}>
+                            <Link className="btn btn-gradient" to={{pathname: `/movies/${m.id}/`, fromDashboard: false }}>Подробнее</Link>
                         </div>
                     </div>
                 ))}
