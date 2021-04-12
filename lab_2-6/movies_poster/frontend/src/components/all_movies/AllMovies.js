@@ -4,7 +4,7 @@ import style from '../../static/style.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { Link } from 'react-router-dom';
 
-function Navbar(){
+function AllMovies(){
 
     const[movies, setMovies] = useState([])
 
@@ -19,8 +19,8 @@ function Navbar(){
     }, [])
 
   return (
-         <div>
-              <div className="choose_bar">
+   <div>
+   <div className="choose_bar">
                 <div className="container">
                     <Link to={{pathname: `/movies/`, fromDashboard: false }} >Афиша</Link>
                     <Link to={{pathname: `/about/`, fromDashboard: false }}>О нас</Link>
@@ -28,26 +28,7 @@ function Navbar(){
                     <Link href="#">Войти</Link>
                 </div>
             </div>
-
-        <div className="about_company">
-            <div className="container">
-                <div className="text_about">
-                    <p>Вас приветствует чудеснейший кинотеатр (для чудеснейших зрителей)!</p>
-                    <p>Здесь мы рассказываем Вам чудеснейшие истории на чудеснейшем экране (проекторе в общаге)!</p>
-                    <p>Во время просмотра вы получите чудеснейшие эмоции в чудеснейшей компании (нас)!</p>
-                    <p>После просмотра мы можем поиграть в настолки и выпить имбирного чаю!</p>
-                    <p>Приходите к нам - получайте живые эмоции и рассказывайте всем эти чудесные истории - ЧУДОРИИ!!!
-                    </p>
-                </div>
-            </div>
-        </div>
-
-
-        <img className="malifisenta" src="../../static/images/malifisenta.png"  style={{opacity:"30%"}}/>
-
-        <div className="movie_bar">
-
-            <div className="container movie_items">
+           <div class="container all_movies_list">
                 {movies.map(m =>(
                     <div className="item" key={m.id} style={{position: "relative", display: "block ruby", width: "100%", padding: "3%",border: "1px solid blueviolet", "margin-bottom": "3%", "background-color": "#1F1F3A", opacity: "90%", "z-index":"1000"}}>
                         <div class="information part" style={{position: "relative", width: "50%"}}>
@@ -64,12 +45,14 @@ function Navbar(){
                         <div className="button-wrapper part" style={{position: "relative", width: "50%",bottom: "25px"}}>
                             <Link className="btn btn-gradient" to={{pathname: `/movies/${m.id}/`, fromDashboard: false }}>Подробнее</Link>
                         </div>
+
                     </div>
                 ))}
-                <div className="all">
-                    <Link className="btn btn-gradient" to={{pathname: `/movies/`, fromDashboard: false }}>Вся афиша</Link>
-                </div>
-            </div>
+
+                <div className="button-wrapper part">
+                     <button className="btn btn-gradient" data-toggle="modal" data-target="#addMovieModal">Добавить</button>
+              </div>
+
         </div>
 
      </div>
@@ -77,4 +60,4 @@ function Navbar(){
   );
 }
 
-export default Navbar;
+export default AllMovies;

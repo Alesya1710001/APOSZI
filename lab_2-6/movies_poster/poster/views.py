@@ -18,6 +18,10 @@ def index(request):
     return render(request, 'index.html', {})
 
 
+def movies_detail(request, id):
+    return render(request, 'index.html', {})
+
+
 class TestView(APIView):
     def get(self, request, *args, **kwargs):
         data = [{"id": 1, "name": "Jon"}, {"id": 2, "name": "rita"}]
