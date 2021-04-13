@@ -65,6 +65,7 @@ function Navbar(){
                             <Link className="btn btn-gradient" to={{pathname: `/movies/${m.id}/`, fromDashboard: false }}>Подробнее</Link>
                         </div>
                     </div>
+
                 ))}
                 <div className="all">
                     <Link className="btn btn-gradient" to={{pathname: `/movies/`, fromDashboard: false }}>Вся афиша</Link>

@@ -21,7 +21,7 @@ from poster.views import index, movies_detail
 urlpatterns = [
     path('', include('poster.urls')),
     path('admin/', admin.site.urls),
-    path('', index),
+    path('', index, name='main'),
     path('movies/<int:id>', movies_detail),
 
 ]

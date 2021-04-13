@@ -6,7 +6,7 @@ import { Link } from 'react-router-dom';
 
 function MovieDetail({match}){
 
-    const[movie, setMovies] = useState({})
+    const[movie, setMovies, genres] = useState({})
     const id = match.params.id
 
     useEffect(() => {
@@ -18,6 +18,8 @@ function MovieDetail({match}){
             setMovies(response.data)
         })
     }, [id])
+
+
 
   return (
   <div>
@@ -37,17 +39,35 @@ function MovieDetail({match}){
 
         <div className="all_information">
 
-             <div className="type line">
-                 <p>{movie.type}</p>
-             </div>
-
              <div className="year line">
                  <p> Год: &nbsp;</p>
                  <p>{movie.year}</p>
             </div>
 
+            <div className="genre line">
+                 <p>Жанр:&nbsp; </p>
+                {movie.genre ? movie.genre.map((genre) => <p>{genre.genre_name}&nbsp; &nbsp;</p>): []}
+             </div>
+
+             <div className="producer line">
+              <p>Режиссер:&nbsp; </p>
+              {movie.producer ? movie.producer.map((producer) => <p>{producer.surname}&nbsp; &nbsp;</p>): []}
+                 </div>
+
+
+            <div className="actor line">
+             <p>В главных ролях: &nbsp; </p>
+              {movie.actor ? movie.actor.map((actor) => <p>{actor.actor_name}&nbsp; &nbsp;</p>): []}
+                 </div>
+
+
+            <div className="country line">
+                <p>Страна: &nbsp;</p>
+                      {movie.country ? movie.country.map((country) => <p>{country.country_name}&nbsp; &nbsp;</p>): []}
+                 </div>
+
             <div className="about_movie">
-                <p>{movie.plot}</p>
+               <p>{movie.plot}</p>
             </div>
 
             <div className="btn_bar">
