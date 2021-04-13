@@ -53,6 +53,7 @@ function AllMovies(){
                      <button className="btn btn-gradient" data-toggle="modal" data-target="#addMovieModal">Добавить</button>
               </div>
 
+
         </div>
 
      </div>

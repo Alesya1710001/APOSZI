@@ -6,7 +6,7 @@ import { Link } from 'react-router-dom';
 
 function MovieDetail({match}){
 
-    const[movie, setMovies, genres] = useState({})
+    const[movie, setMovies] = useState({})
     const id = match.params.id
 
     useEffect(() => {
@@ -18,7 +18,6 @@ function MovieDetail({match}){
             setMovies(response.data)
         })
     }, [id])
-
 
 
   return (
@@ -71,7 +70,7 @@ function MovieDetail({match}){
             </div>
 
             <div className="btn_bar">
-                 <a className="btn btn-gradient" href="{% url 'delete_movie' pk=movie.pk %}">Удалить</a>
+                 <Link className="btn btn-gradient"  to={{pathname: `/movies/deleted/${id}/`, fromDashboard: false }}>Удалить</Link>
                  <button className="btn btn-gradient" data-toggle="modal" data-target="#editMovieModal">Изменить</button>
              </div>
 
