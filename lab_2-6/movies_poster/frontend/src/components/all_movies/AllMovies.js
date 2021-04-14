@@ -50,7 +50,7 @@ function AllMovies(){
                 ))}
 
                 <div className="button-wrapper part">
-                     <button className="btn btn-gradient" data-toggle="modal" data-target="#addMovieModal">Добавить</button>
+                     <Link className="btn btn-gradient" data-toggle="modal" data-target="#addMovieModal" to={{pathname: `/movies/add`, fromDashboard: false }}>Добавить</Link>
               </div>
 
 

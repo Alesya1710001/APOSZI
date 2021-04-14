@@ -1,6 +1,7 @@
 import Navbar from './components/navigation/Navbar'
 import MovieDetail from './components/movie_detail/MovieDetail'
 import AllMovies from './components/all_movies/AllMovies'
+import MovieAdd from './components/all_movies/MovieAdd'
 import About from './components/about_us/About'
 import Contact from './components/contact/Contact'
 import DeleteMovie from './components/movie_detail/DeleteMovie'
@@ -15,6 +16,7 @@ function App(){
             <Switch>
                 <Route path="/about" exact component={About} />
                 <Route path="/contact" exact component={Contact} />
+                <Route path="/movies/add" exact component={MovieAdd} />
                 <Route path="/movies/deleted/:id" exact component={DeleteMovie} />
                 <Route path="/movies/:id" exact component={MovieDetail} />
                 <Route path="/movies" exact component={AllMovies} />
