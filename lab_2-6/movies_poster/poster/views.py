@@ -22,12 +22,6 @@ def movies_detail(request, id):
     return render(request, 'index.html', {})
 
 
-class TestView(APIView):
-    def get(self, request, *args, **kwargs):
-        data = [{"id": 1, "name": "Jon"}, {"id": 2, "name": "rita"}]
-        return Response(data)
-
-
 class MoviesViewSet(viewsets.ModelViewSet):
     serializer_class = MoviesSerializer
 
@@ -38,8 +32,7 @@ class MoviesViewSet(viewsets.ModelViewSet):
     def create(self, request, *args, **kwargs):
         data = request.data
 
-        new_movie = Movie.objects.create(movie_name=data['movie_name'], plot=data['plot'],
-                                         type=data['type'], year=data['year'])
+        new_movie = Movie.objects.create(movie_name=data['movie_name'], plot=data['plot'], year=data['year'])
         new_movie.save()
 
         for genre in data['genre']:

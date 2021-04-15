@@ -23,6 +23,16 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('', index, name='main'),
     path('movies/<int:id>', movies_detail),
+    path('movies/', index),
+    path('about/', index),
+    path('contact/', index),
+    path('movies/add/', index),
+    path('add_country/', index),
+    path('movies/deleted/<int:id>/', movies_detail),
+    path('movies/<int:id>/edit/', movies_detail),
+    path('add_genre/', index),
+    path('add_actor/', index),
+    path('add_producer/', index),
 
 ]
 

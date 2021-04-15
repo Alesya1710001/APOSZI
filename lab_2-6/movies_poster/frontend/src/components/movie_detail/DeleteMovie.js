@@ -4,7 +4,7 @@ import style from '../../static/style.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { Link } from 'react-router-dom';
 
-function MovieDetail({match}){
+function DeleteMovie({match}){
 
     const[movie] = useState({})
     const id = match.params.id
@@ -18,7 +18,6 @@ function MovieDetail({match}){
             console.log(response.data)
         })
     }, [id])
-
 
   return (
   <div>
@@ -38,4 +37,4 @@ function MovieDetail({match}){
   );
 }
 
-export default MovieDetail;
+export default DeleteMovie;

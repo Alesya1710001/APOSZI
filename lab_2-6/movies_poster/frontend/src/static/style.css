@@ -358,6 +358,7 @@ header .container {
 .item .part{
     position: relative;
     width: 50%;
+    display: inline-block;
 }
 
 .item .button-wrapper{
@@ -591,6 +592,7 @@ footer .part{
 
 .line{
     display:flex;
+    font-size: 20px;
 }
 
 .line p:first-child{
@@ -626,6 +628,7 @@ footer .part{
 
 .one_label{
     margin-top: 30px;
+    display: grid;
 }
 
 .one_label i {
@@ -637,18 +640,60 @@ footer .part{
     margin: 20px;
 }
 
-.movie_add_page label{
+.movie_add_page label,
+.add_page label{
     font-size: 25px;
     margin-bottom: 30px;
     margin-right: 40px;
 }
 
-.movie_add_page input{
+.movie_add_page input,
+.add_page input{
     border: 1px solid fuchsia;
-    color: blue;
+    color: white;
     background: content-box;
     width: 40%;
     border-radius: 5px;
     padding: 15px;
     font-size: 20px;
 }
+
+.movie_add_page textarea{
+    border: 1px solid blueviolet;
+    border-radius: 5px;
+    color: white;
+    background: border-box;
+    padding: 15px;
+    width: 50%;
+    height: 202px;
+    overflow-y: auto;
+    margin-bottom: 8%;
+}
+
+.movie_add_page select{
+    width: 20%;
+    color: white;
+    background: border-box;
+    padding: 15px;
+    border: 1px solid blue;
+    overflow-y: auto;
+}
+
+.movie_add_page select option{
+    font-size: 18px;
+    padding-bottom: 8px;
+}
+
+.add_page{
+    margin-bottom:30%;
+}
+
+.plus_btn{
+    color: white;
+    width: max-content;
+}
+
+.plus_btn:hover{
+    color: blue;
+}
+

@@ -57,9 +57,7 @@ function Navbar(){
                             <div className="item_year info" style={{"font-size": "18px", "text-transform": "uppercase"}}>
                                 <p>{m.year}</p>
                             </div>
-                            <div className="item_type info" style={{"font-size": "18px", "text-transform": "uppercase"}}>
-                                <p>{m.type}</p>
-                            </div>
+
                         </div>
                         <div className="button-wrapper part" style={{position: "relative", width: "50%",bottom: "25px"}}>
                             <Link className="btn btn-gradient" to={{pathname: `/movies/${m.id}/`, fromDashboard: false }}>Подробнее</Link>

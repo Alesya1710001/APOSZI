@@ -109,7 +109,6 @@ const[actor, setActor] = useState([])
     const data = {
         'movie_name': e.target.elements.movie_name.value,
         'year': e.target.elements.year.value,
-        'type': e.target.elements.type.value,
         'genre': genre,
         'country': country,
         'producer': producer,
@@ -131,6 +130,13 @@ const[actor, setActor] = useState([])
             console.log(response.data)
         })
 
+
+
+    window.history.back()
+
+
+
+
   }
 
   return (
@@ -144,27 +150,21 @@ const[actor, setActor] = useState([])
                 </div>
      </div>
 
-     <div className="container">
+     <div className="container movie_add_page">
         <form onSubmit={Submit}>
 
          <div className="name_label one_label">
             <label>Название: </label>
-               <input type="text" name="movie_name"  required />
+               <input type="text" name="movie_name" autocomplete="off" value="name" required />
          </div>
 
 
           <div className="year_label one_label">
             <label>Год: </label>
-               <input type="text" name="year"  required />
+               <input type="number" name="year" autocomplete="off" required />
           </div>
 
-           <div className="type_label one_label" >
-            <label>Тип: </label>
-             <select name="type"  required>
-                  <option>1</option>
-                  <option>2</option>
-             </select>
-           </div>
+
 
             <div className="genre_label one_label">
                  <label>Жанр: </label>
@@ -173,7 +173,7 @@ const[actor, setActor] = useState([])
                   <option>{g.genre_name}</option>
                   ))}
                 </select>
-
+                <Link to={{pathname: `/add_genre/`, fromDashboard: false }} className="plus_btn"><i class="las la-plus-circle"></i></Link>
             </div>
 
 
@@ -184,7 +184,7 @@ const[actor, setActor] = useState([])
                           <option>{c.country_name}</option>
                           ))}
                         </select>
-
+                <Link to={{pathname: `/add_country/`, fromDashboard: false }} className="plus_btn"><i class="las la-plus-circle"></i></Link>
                     </div>
 
 
@@ -195,6 +195,7 @@ const[actor, setActor] = useState([])
                           <option>{p.surname}</option>
                           ))}
                         </select>
+                        <Link to={{pathname: `/add_producer/`, fromDashboard: false }} className="plus_btn"><i class="las la-plus-circle"></i></Link>
                     </div>
 
 
@@ -205,16 +206,17 @@ const[actor, setActor] = useState([])
                           <option>{a.actor_name}</option>
                           ))}
                         </select>
+                        <Link to={{pathname: `/add_actor/`, fromDashboard: false }} className="plus_btn"><i class="las la-plus-circle"></i></Link>
                     </div>
 
 
                    <div class="plot_label one_label">
                         <label>Описание:</label>
-                        <textarea type="text" name="plot"  required />
+                        <textarea type="text" name="plot" autocomplete="off" required />
                     </div>
 
-                     <div className="modal-footer button-wrapper">
-                        <button type="submit" className="btn btn-primary btn-gradient" value="Submit">Добавить</button>
+                     <div className="form_btn" style={{"text-align": "right"}}>
+                        <button type="submit" className="btn btn-primary btn-gradient" value="Submit">Сохранить</button>
                      </div>
 
 

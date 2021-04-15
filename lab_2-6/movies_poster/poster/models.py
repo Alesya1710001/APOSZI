@@ -46,11 +46,6 @@ class Actor(models.Model):
 class Movie(models.Model):
     movie_name = models.CharField(max_length=50, blank=False, null=False)
     year = models.IntegerField(blank=False, null=False, default=0)
-    TYPE_CHOICE = (
-        (1, 'Фильм'),
-        (2, 'Мультфильм'),
-    )
-    type = models.IntegerField(default=1, choices=TYPE_CHOICE)
     genre = models.ManyToManyField(Genre)
     country = models.ManyToManyField(Country)
     producer = models.ManyToManyField(Producer)
@@ -69,7 +64,6 @@ class AddMovieForm(ModelForm):
         model = Movie
         fields = ['movie_name',
                   'year',
-                  'type',
                   'genre',
                   'country',
                   'producer',
