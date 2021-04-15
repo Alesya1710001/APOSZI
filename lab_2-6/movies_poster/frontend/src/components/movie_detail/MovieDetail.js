@@ -71,7 +71,7 @@ function MovieDetail({match}){
 
             <div className="btn_bar">
                  <Link className="btn btn-gradient"  to={{pathname: `/movies/deleted/${id}/`, fromDashboard: false }}>Удалить</Link>
-                 <button className="btn btn-gradient" data-toggle="modal" data-target="#editMovieModal">Изменить</button>
+                 <Link className="btn btn-gradient" data-toggle="modal" data-target="#editMovieModal" to={{pathname: `/movies/${id}/edit`, fromDashboard: false }}>Изменить</Link>
              </div>
 
          </div>

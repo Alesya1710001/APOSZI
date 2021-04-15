@@ -5,9 +5,23 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import { Link } from 'react-router-dom';
 
 
-function MovieAdd(){
+function MovieEdit({match}){
 
-const[genre, setGenre] = useState([])
+    const[movie, setMovie] = useState({})
+    const id = match.params.id
+
+    useEffect(() => {
+        axios({
+            method: "GET",
+            dataType: "jsonp",
+            url: `http://127.0.0.1:8000/poster/movies/${id}`
+        }).then(response => {
+            setMovie(response.data)
+        })
+    }, [id])
+
+
+    const[genre, setGenre] = useState([])
 
     useEffect(() => {
         axios({
@@ -91,6 +105,7 @@ const[actor, setActor] = useState([])
         producer.push(producer_dict);
     }
 
+
     const data = {
         'movie_name': e.target.elements.movie_name.value,
         'year': e.target.elements.year.value,
@@ -106,12 +121,12 @@ const[actor, setActor] = useState([])
     console.table(data)
 
         axios({
-            method: "POST",
+            method: "PUT",
             data: data,
             headers: {
             'Content-type' : 'application/json'
             },
-            url: "http://127.0.0.1:8000/poster/movies/"
+            url: `http://127.0.0.1:8000/poster/movies/${id}/`
         }).then(response => {
             console.log(response.data)
         })
@@ -129,7 +144,7 @@ const[actor, setActor] = useState([])
                 </div>
      </div>
 
-     <div className="container movie_add_page">
+     <div className="container">
         <form onSubmit={Submit}>
 
          <div className="name_label one_label">
@@ -144,7 +159,7 @@ const[actor, setActor] = useState([])
           </div>
 
            <div className="type_label one_label" >
-            <label>Тип (1 - Фильм, 2 - Мультфильм : </label>
+            <label>Тип: </label>
              <select name="type"  required>
                   <option>1</option>
                   <option>2</option>
@@ -211,4 +226,4 @@ const[actor, setActor] = useState([])
   );
 }
 
-export default MovieAdd;
+export default MovieEdit;

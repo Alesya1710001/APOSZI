@@ -32,7 +32,7 @@ function MovieDetail({match}){
             </div>
       <div className="container" style={{"text-align": "center"}}>
     <div style={{"text-align": "center", "font-size": "25px", padding: "50px"}}>Фильм удален</div>
-     <Link className="btn btn-gradient"  to={{pathname: `/movies`, fromDashboard: false }}>К списку фильмов</Link>
+     <Link className="btn btn-gradient" style={{"margin-bottom": "20%"}} to={{pathname: `/movies`, fromDashboard: false }}>К списку фильмов</Link>
   </div>
   </div>
   );
