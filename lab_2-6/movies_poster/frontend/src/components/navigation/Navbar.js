@@ -56,6 +56,7 @@ function Navbar(){
                             </div>
                             <div className="item_year info" style={{"font-size": "18px", "text-transform": "uppercase"}}>
                                 <p>{m.year}</p>
+                                <p>{m.plot}</p>
                             </div>
 
                         </div>

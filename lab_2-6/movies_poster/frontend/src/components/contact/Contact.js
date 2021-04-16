@@ -3,11 +3,18 @@ import axios from 'axios';
 import style from '../../static/style.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { Link } from 'react-router-dom';
+import { Map, GoogleApiWrapper, Marker } from 'google-maps-react';
 
-function Contact(){
+export class Maps extends React.Component{
+render() {
+    const mapStyles = {
+      width: "600px",
+      height: "450px",
+      frameborder:"0ps",
+    };
+    return (
 
-  return (
-  <div>
+        <div>
   <div className="choose_bar">
                 <div className="container">
                     <Link to={{pathname: `/movies/`, fromDashboard: false }} >Афиша</Link>
@@ -41,10 +48,24 @@ function Contact(){
 			</div>
 		</div>
 
-	</div>
-	</div>
+	    <div className="contact-part map">
 
-  );
+      <Map
+        google={this.props.google}
+        zoom={8}
+        style={mapStyles}
+        initialCenter={{ lat: 53.9300411, lng: 27.588788605734674}}
+      >
+        <Marker position={{lat:53.9300411, lng: 27.588788605734674}} />
+      </Map>
+
+        </div>
+
+        </div>
+      </div>
+    );
+  }
 }
 
-export default Contact;
+export default GoogleApiWrapper({
+})(Maps);

@@ -670,8 +670,8 @@ footer .part{
     margin-bottom: 8%;
 }
 
-.movie_add_page select{
-    width: 20%;
+.movie_add_page Select{
+    width: 50%;
     color: white;
     background: border-box;
     padding: 15px;
@@ -679,7 +679,7 @@ footer .part{
     overflow-y: auto;
 }
 
-.movie_add_page select option{
+.movie_add_page Select option{
     font-size: 18px;
     padding-bottom: 8px;
 }
@@ -697,3 +697,32 @@ footer .part{
     color: blue;
 }
 
+.css-2b097c-container {
+    position: relative;
+    border: 2px solid blue;
+    border-radius: 5px;
+    padding: 15px;
+    width: 70%;
+    color: black;
+}
+
+.css-2b097c-container
+
+.css-yk16xz-control {
+    border: none !important;
+    background: border-box !important;
+}
+
+.css-2613qy-menu{
+    background: border-box !important;
+}
+
+css-1pahdxg-control{
+    position: relative;
+    border: 2px solid blue;
+    border-radius: 5px;
+    padding: 15px;
+    width: 70%;
+    color: black;
+     background: border-box !important;
+}
