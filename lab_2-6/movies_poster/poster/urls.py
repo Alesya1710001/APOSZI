@@ -1,7 +1,6 @@
-from rest_framework.routers import DefaultRouter
 from django.urls import path, include
+from rest_framework.routers import DefaultRouter
 
-from . import views
 from .views import *
 
 router = DefaultRouter()
@@ -21,4 +20,5 @@ urlpatterns = [
    path('about_us/', views.about_us, name='about_us'),
    path('all_movies/', views.poster, name='all_movies'),
    path('<int:pk>/', views.movie_detail, name='movie_detail'),
-   path('<int:pk>/delete', views.delete_movie, name='delete_movie'),'''
+   path('<int:pk>/delete', views.delete_movie, name='delete_movie'),
+'''

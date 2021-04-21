@@ -34,7 +34,7 @@ function MovieEdit({match}){
         })
     }, [])
 
- const[country, setCountry] = useState([])
+    const[country, setCountry] = useState([])
 
     useEffect(() => {
         axios({
@@ -46,7 +46,7 @@ function MovieEdit({match}){
         })
     }, [])
 
-const[producer, setProducer] = useState([])
+    const[producer, setProducer] = useState([])
 
     useEffect(() => {
         axios({
@@ -58,7 +58,7 @@ const[producer, setProducer] = useState([])
         })
     }, [])
 
-const[actor, setActor] = useState([])
+    const[actor, setActor] = useState([])
 
     useEffect(() => {
         axios({
@@ -189,113 +189,96 @@ const[actor, setActor] = useState([])
             console.log(response.data)
         })
 
-
-
     window.history.back()
-
-
-
 
   };
 
-
-
-
-
-
   return (
    <div>
-   <div className="choose_bar">
-                <div className="container">
-                    <Link to={{pathname: `/movies/`, fromDashboard: false }} >Афиша</Link>
-                    <Link to={{pathname: `/about/`, fromDashboard: false }}>О нас</Link>
-                    <Link to={{pathname: `/contact/`, fromDashboard: false }}>Контакты</Link>
-                    <Link href="#">Войти</Link>
-                </div>
-     </div>
+    <div className="choose_bar">
+        <div className="container">
+            <Link to={{pathname: `/movies/`, fromDashboard: false }} >Афиша</Link>
+            <Link to={{pathname: `/about/`, fromDashboard: false }}>О нас</Link>
+            <Link to={{pathname: `/contact/`, fromDashboard: false }}>Контакты</Link>
+            <Link href="#">Войти</Link>
+        </div>
+    </div>
 
-     <div className="container movie_add_page">
+    <div className="container movie_add_page">
         <form onSubmit={Submit}>
+            <div className="name_label one_label">
+                <label>Название: </label>
+                <input type="text" name="movie_name" autocomplete="off" defaultValue={movie.movie_name} required />
+            </div>
 
-         <div className="name_label one_label">
-            <label>Название: </label>
-               <input type="text" name="movie_name" autocomplete="off" defaultValue={movie.movie_name} required />
-         </div>
+            <div className="year_label one_label">
+                <label>Год: </label>
+                <input type="number" name="year" autocomplete="off" defaultValue={movie.year} required />
+            </div>
 
+            <div className="genre_label one_label">
+                <label>Жанр: </label>
+                <Select
+                    defaultValue = {[]}
+                    isMulti
+                    isRequired
+                    name="genre"
+                    className="select"
+                    options={genre_opt}
+                />
+                <Link to={{pathname: `/add_genre/`, fromDashboard: false }} className="plus_btn"><i class="las la-plus-circle"></i></Link>
+            </div>
 
-          <div className="year_label one_label">
-            <label>Год: </label>
-               <input type="number" name="year" autocomplete="off" defaultValue={movie.year} required />
-          </div>
+            <div className="country_label one_label">
+                <label>Страна:</label>
+                <Select
+                    defaultValue={[]}
+                    isMulti
+                    isRequired
+                    name="country"
+                    className="select"
+                    options={country_opt}
+                />
+                 <Link to={{pathname: `/add_country/`, fromDashboard: false }} className="plus_btn"><i class="las la-plus-circle"></i></Link>
+            </div>
 
-        <div className="genre_label one_label">
-          <label>Жанр: </label>
-            <Select
-                defaultValue = {[]}
-                isMulti
-                isRequired
-                name="genre"
-                className="select"
-                options={genre_opt}
-            />
-            <Link to={{pathname: `/add_genre/`, fromDashboard: false }} className="plus_btn"><i class="las la-plus-circle"></i></Link>
-         </div>
+             <div class="producer_label one_label">
+                <label>Режиссер:</label>
+                <Select
+                    defaultValue={[]}
+                    isMulti
+                    isRequired
+                    name="producer"
+                    className="select"
+                    options={producer_opt}
+                />
+                 <Link to={{pathname: `/add_producer/`, fromDashboard: false }} className="plus_btn"><i class="las la-plus-circle"></i></Link>
+             </div>
 
-
-         <div className="country_label one_label">
-            <label>Страна:</label>
-            <Select
-                defaultValue={[]}
-                isMulti
-                isRequired
-                name="country"
-                className="select"
-                options={country_opt}
-            />
-             <Link to={{pathname: `/add_country/`, fromDashboard: false }} className="plus_btn"><i class="las la-plus-circle"></i></Link>
-          </div>
-
-         <div class="producer_label one_label">
-            <label>Режиссер:</label>
-            <Select
-                defaultValue={[]}
-                isMulti
-                isRequired
-                name="producer"
-                className="select"
-                options={producer_opt}
-            />
-             <Link to={{pathname: `/add_producer/`, fromDashboard: false }} className="plus_btn"><i class="las la-plus-circle"></i></Link>
-          </div>
-
-         <div class="actor_label one_label">
-             <label>В главных ролях:</label>
-            <Select
-                defaultValue={[]}
-                isMulti
-                isRequired
-                name="actor"
-                className="select"
-                options={actor_opt}
-            />
-
-              <Link to={{pathname: `/add_actor/`, fromDashboard: false }} className="plus_btn"><i class="las la-plus-circle"></i></Link>
+            <div class="actor_label one_label">
+                <label>В главных ролях:</label>
+                <Select
+                    defaultValue={[]}
+                    isMulti
+                    isRequired
+                    name="actor"
+                    className="select"
+                    options={actor_opt}
+                />
+                <Link to={{pathname: `/add_actor/`, fromDashboard: false }} className="plus_btn"><i class="las la-plus-circle"></i></Link>
            </div>
 
-                   <div class="plot_label one_label">
-                        <label>Описание:</label>
-                        <textarea type="text" name="plot" defaultValue={movie.plot} autocomplete="off" required />
-                    </div>
+           <div class="plot_label one_label">
+                <label>Описание:</label>
+                <textarea type="text" name="plot" defaultValue={movie.plot} autocomplete="off" required />
+           </div>
 
-                     <div className="form_btn" style={{"text-align": "right"}}>
-                        <button type="submit" className="btn btn-primary btn-gradient" value="Submit">Сохранить</button>
-                     </div>
-
-
-          </form>
-     </div>
-
+           <div className="form_btn" style={{"text-align": "right"}}>
+               <button type="submit" className="btn btn-primary btn-gradient" value="Submit">Сохранить</button>
+           </div>
+       </form>
    </div>
+</div>
 
   );
 }

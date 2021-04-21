@@ -6,16 +6,17 @@ import { Link } from 'react-router-dom';
 import { Map, GoogleApiWrapper, Marker } from 'google-maps-react';
 
 export class Maps extends React.Component{
+
 render() {
     const mapStyles = {
       width: "600px",
       height: "450px",
       frameborder:"0ps",
     };
-    return (
 
+    return (
         <div>
-  <div className="choose_bar">
+            <div className="choose_bar">
                 <div className="container">
                     <Link to={{pathname: `/movies/`, fromDashboard: false }} >Афиша</Link>
                     <Link to={{pathname: `/about/`, fromDashboard: false }}>О нас</Link>
@@ -23,46 +24,50 @@ render() {
                     <Link href="#">Войти</Link>
                 </div>
             </div>
-     <div className="container contact">
-		<div className="contact-part">
-			<div className="title">Контакты</div>
-			<div className="contact-block">
-				<p>220040, Республика Беларусь, г. Минск</p>
-				<p>ул. Л.Беды 4/1</p>
-				<p>метро Академия наук </p>
-			</div>
-			<div className="contact-block">
-				<p className="main">Тел: </p>
-				<p>+375 33 316 49 22 </p>
-				<p>+375 29 861 99 02 </p>
-			</div>
-			<div className="contact-block">
-				<p className="main">Instagram: </p>
-				<p>@pr_ritaa, </p>
-				<p>@alesyakrop </p>
-			</div>
-			<div className="contact-block">
-				<p className="main">e-mail: </p>
-				<p>prokhozhaya@gmail.com,</p>
-				<p>kropka171001@gmail.com </p>
-			</div>
-		</div>
 
-	    <div className="contact-part map">
+            <div className="container contact">
+                <div className="contact-part">
+                    <div className="title">Контакты</div>
 
-      <Map
-        google={this.props.google}
-        zoom={8}
-        style={mapStyles}
-        initialCenter={{ lat: 53.9300411, lng: 27.588788605734674}}
-      >
-        <Marker position={{lat:53.9300411, lng: 27.588788605734674}} />
-      </Map>
+                    <div className="contact-block">
+                        <p>220040, Республика Беларусь, г. Минск</p>
+                        <p>ул. Л.Беды 4/1</p>
+                        <p>метро Академия наук </p>
+                    </div>
 
-        </div>
+                    <div className="contact-block">
+                        <p className="main">Тел: </p>
+                        <p>+375 33 316 49 22 </p>
+                        <p>+375 29 861 99 02 </p>
+                    </div>
 
-        </div>
-      </div>
+                    <div className="contact-block">
+                        <p className="main">Instagram: </p>
+                        <p>@pr_ritaa, </p>
+                        <p>@alesyakrop </p>
+                    </div>
+
+                    <div className="contact-block">
+                        <p className="main">e-mail: </p>
+                        <p>prokhozhaya@gmail.com,</p>
+                        <p>kropka171001@gmail.com </p>
+                    </div>
+
+                </div>
+
+            <div className="contact-part map">
+
+                <Map
+                    google={this.props.google}
+                    zoom={8}
+                    style={mapStyles}
+                    initialCenter={{ lat: 53.9300411, lng: 27.588788605734674}}
+                >
+                    <Marker position={{lat:53.9300411, lng: 27.588788605734674}} />
+                </Map>
+            </div>
+         </div>
+   </div>
     );
   }
 }

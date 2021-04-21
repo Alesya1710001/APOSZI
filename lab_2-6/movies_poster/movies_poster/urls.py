@@ -35,4 +35,3 @@ urlpatterns = [
     path('add_producer/', index),
 
 ]
-

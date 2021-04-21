@@ -2,111 +2,115 @@
 {% load static %}
 {% block content %}
 
- <div class="container all_movies_list">
-        {% for movie in movies %}
-        <div class="item">
-            <div class="information part">
-                <div class="item_title info">
-                    <p>{{movie.movie_name}}</p>
-                </div>
-                <div class="item_year info">
-                    <p>{{movie.year}}</p>
-                </div>
-                <div class="item_genre info">
-                    <p>{{movie.get_type_display}}</p>
-                </div>
+<div class="container all_movies_list">
+    {% for movie in movies %}
+    <div class="item">
+        <div class="information part">
+            <div class="item_title info">
+                <p>{{movie.movie_name}}</p>
             </div>
-            <div class="button-wrapper part">
-             <a class="btn btn-gradient" href="{% url 'movie_detail' pk=movie.pk %}">Подробнее</a>
+            <div class="item_year info">
+                <p>{{movie.year}}</p>
+            </div>
+            <div class="item_genre info">
+                <p>{{movie.get_type_display}}</p>
             </div>
         </div>
-     {% endfor %}
+        <div class="button-wrapper part">
+            <a class="btn btn-gradient" href="{% url 'movie_detail' pk=movie.pk %}">Подробнее</a>
+        </div>
+    </div>
+    {% endfor %}
 
-      <div class="button-wrapper part">
-             <button class="btn btn-gradient" data-toggle="modal" data-target="#addMovieModal">Добавить</button>
-      </div>
-
+    <div class="button-wrapper part">
+        <button class="btn btn-gradient" data-toggle="modal" data-target="#addMovieModal">Добавить</button>
+    </div>
 
 
     <!-- Modal -->
-    <div class="modal fade" id="addMovieModal" tabindex="-1" role="dialog" aria-labelledby="addMovieModalLabel" aria-hidden="true">
-      <div class="modal-dialog" role="document">
-        <div class="modal-content">
-          <div class="modal-header">
-            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-              <span aria-hidden="true">&times;</span>
-            </button>
-          </div>
-          <div class="modal-body">
-               <form method="post" action="">
-                   {% csrf_token %}
-                   <div class="name_label one_label">
-                        <label for="{{form.movie_name.id_for_label}}">Название:</label>
-                        {{ form.movie_name }}
-                    </div>
-                   <div class="year_label one_label">
-                        <label for="{{form.year.id_for_label}}">Год:</label>
-                        {{ form.year }}
-                   </div>
-                   <div class="type_label one_label" >
-                        <label for="{{form.type.id_for_label}}">Тип:</label>
-                        {{ form.type }}
-                    </div>
-                   <div class="genre_label one_label">
-                        <label for="{{form.genre.id_for_label}}">Жанр:</label>
-                        {{ form.genre }}
-                        <a href="#" id="add_genre_btn"><i class="las la-plus-circle"></i></a>
-                       <div class="add_genre add_many_to_many" style="display:none">
-                            <input type="text">
-                           <button type="submit" class="btn btn-primary save_genre"  value="Submit" ><i class="las la-check"></i></button>
-                            <button class="btn btn-primary hide_form"><i class="las la-times"></i></button>
-                       </div>
-                    </div>
-                   <div class="country_label one_label">
-                        <label for="{{form.country.id_for_label}}">Страна:</label>
-                        {{ form.country }}
-                        <a href="#"  id="add_country_btn"><i class="las la-plus-circle"></i></a>
-                       <div class="add_country add_many_to_many"  style="display:none">
-                             <input type="text">
-                            <button type="submit" class="btn btn-primary save_country"  value="Submit" ><i class="las la-check"></i></button>
-                            <button class="btn btn-primary hide_form"><i class="las la-times"></i></button>
-                       </div>
-                    </div>
-                   <div class="producer_label one_label">
-                        <label for="{{form.producer.id_for_label}}">Режиссер:</label>
-                        {{ form.producer }}
-                        <a href="#"  id="add_producer_btn"><i class="las la-plus-circle"></i></a>
-                       <div class="add_producer add_many_to_many"  style="display:none">
-                             <input type="text">
-                            <button type="submit" class="btn btn-primary save_producer"  value="Submit" ><i class="las la-check"></i></button>
-                            <button class="btn btn-primary hide_form"><i class="las la-times"></i></button>
-                       </div>
-                    </div>
-                   <div class="actor_label one_label">
-                        <label for="{{form.actor.id_for_label}}">В главных ролях:</label>
-                        {{ form.actor }}
-                        <a href="#" id="add_actor_btn"><i class="las la-plus-circle"></i></a>
-                       <div class="add_actor add_many_to_many"  style="display:none">
-                             <input type="text">
-                           <button type="submit" class="btn btn-primary save_actor"  value="Submit" ><i class="las la-check"></i></button>
-                            <button class="btn btn-primary hide_form"><i class="las la-times"></i></button>
-                       </div>
-                    </div>
-                   <div class="plot_label one_label">
-                        <label for="{{form.plot.id_for_label}}">Описание:</label>
-                        {{ form.plot }}
-                    </div>
+    <div class="modal fade" id="addMovieModal" tabindex="-1" role="dialog" aria-labelledby="addMovieModalLabel"
+         aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <form method="post" action="">
+                        {% csrf_token %}
+                        <div class="name_label one_label">
+                            <label for="{{form.movie_name.id_for_label}}">Название:</label>
+                            {{ form.movie_name }}
+                        </div>
+                        <div class="year_label one_label">
+                            <label for="{{form.year.id_for_label}}">Год:</label>
+                            {{ form.year }}
+                        </div>
+                        <div class="type_label one_label">
+                            <label for="{{form.type.id_for_label}}">Тип:</label>
+                            {{ form.type }}
+                        </div>
+                        <div class="genre_label one_label">
+                            <label for="{{form.genre.id_for_label}}">Жанр:</label>
+                            {{ form.genre }}
+                            <a href="#" id="add_genre_btn"><i class="las la-plus-circle"></i></a>
+                            <div class="add_genre add_many_to_many" style="display:none">
+                                <input type="text">
+                                <button type="submit" class="btn btn-primary save_genre" value="Submit"><i
+                                        class="las la-check"></i></button>
+                                <button class="btn btn-primary hide_form"><i class="las la-times"></i></button>
+                            </div>
+                        </div>
+                        <div class="country_label one_label">
+                            <label for="{{form.country.id_for_label}}">Страна:</label>
+                            {{ form.country }}
+                            <a href="#" id="add_country_btn"><i class="las la-plus-circle"></i></a>
+                            <div class="add_country add_many_to_many" style="display:none">
+                                <input type="text">
+                                <button type="submit" class="btn btn-primary save_country" value="Submit"><i
+                                        class="las la-check"></i></button>
+                                <button class="btn btn-primary hide_form"><i class="las la-times"></i></button>
+                            </div>
+                        </div>
+                        <div class="producer_label one_label">
+                            <label for="{{form.producer.id_for_label}}">Режиссер:</label>
+                            {{ form.producer }}
+                            <a href="#" id="add_producer_btn"><i class="las la-plus-circle"></i></a>
+                            <div class="add_producer add_many_to_many" style="display:none">
+                                <input type="text">
+                                <button type="submit" class="btn btn-primary save_producer" value="Submit"><i
+                                        class="las la-check"></i></button>
+                                <button class="btn btn-primary hide_form"><i class="las la-times"></i></button>
+                            </div>
+                        </div>
+                        <div class="actor_label one_label">
+                            <label for="{{form.actor.id_for_label}}">В главных ролях:</label>
+                            {{ form.actor }}
+                            <a href="#" id="add_actor_btn"><i class="las la-plus-circle"></i></a>
+                            <div class="add_actor add_many_to_many" style="display:none">
+                                <input type="text">
+                                <button type="submit" class="btn btn-primary save_actor" value="Submit"><i
+                                        class="las la-check"></i></button>
+                                <button class="btn btn-primary hide_form"><i class="las la-times"></i></button>
+                            </div>
+                        </div>
+                        <div class="plot_label one_label">
+                            <label for="{{form.plot.id_for_label}}">Описание:</label>
+                            {{ form.plot }}
+                        </div>
 
-                    <div class="modal-footer button-wrapper">
-                        <button type="submit" class="btn btn-primary btn-gradient"  value="Submit" >Добавить</button>
-                     </div>
-                </form>
-          </div>
+                        <div class="modal-footer button-wrapper">
+                            <button type="submit" class="btn btn-primary btn-gradient" value="Submit">Добавить</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
         </div>
-      </div>
     </div>
 
- </div>
+</div>
 
 
 {% endblock content %}
@@ -227,6 +231,7 @@
                 }
             })
         });
+
 
 
 </script>

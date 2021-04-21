@@ -1,6 +1,5 @@
 from django.db import models
 from django.forms import ModelForm
-from django import forms
 
 
 class Genre(models.Model):
@@ -69,5 +68,3 @@ class AddMovieForm(ModelForm):
                   'producer',
                   'actor',
                   'plot']
-
-

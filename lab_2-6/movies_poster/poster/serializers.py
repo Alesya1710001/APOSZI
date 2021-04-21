@@ -33,4 +33,3 @@ class MoviesSerializer(serializers.ModelSerializer):
         fields = ['id', 'year', 'movie_name', 'genre', 'producer',
                   'actor', 'country', 'plot']
         depth = 1
-

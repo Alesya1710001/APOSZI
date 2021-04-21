@@ -19,43 +19,40 @@ function AllMovies(){
     }, [])
 
   return (
-   <div>
-   <div className="choose_bar">
-                <div className="container">
-                    <Link to={{pathname: `/movies/`, fromDashboard: false }} >Афиша</Link>
-                    <Link to={{pathname: `/about/`, fromDashboard: false }}>О нас</Link>
-                    <Link to={{pathname: `/contact/`, fromDashboard: false }}>Контакты</Link>
-                    <Link href="#">Войти</Link>
-                </div>
-            </div>
-           <div class="container all_movies_list">
-                {movies.map(m =>(
-                    <div className="item" key={m.id} style={{position: "relative", display: "block ruby", width: "100%", padding: "3%",border: "1px solid blueviolet", "margin-bottom": "3%", "background-color": "#1F1F3A", opacity: "90%", "z-index":"1000"}}>
-                        <div class="information part" style={{position: "relative", width: "50%"}}>
-                            <div className="item_title info" style={{"font-size": "18px", "text-transform": "uppercase"}}>
-                                <p>{m.movie_name}</p>
-                            </div>
-                            <div className="item_year info" style={{"font-size": "18px", "text-transform": "uppercase"}}>
-                                <p>{m.year}</p>
-                                <p>{m.plot}</p>
-                            </div>
-
-                        </div>
-                        <div className="button-wrapper part" style={{position: "relative", width: "50%",bottom: "25px"}}>
-                            <Link className="btn btn-gradient" to={{pathname: `/movies/${m.id}/`, fromDashboard: false }}>Подробнее</Link>
-                        </div>
-
-                    </div>
-                ))}
-
-                <div className="button-wrapper part">
-                     <Link className="btn btn-gradient" data-toggle="modal" data-target="#addMovieModal" to={{pathname: `/movies/add`, fromDashboard: false }}>Добавить</Link>
-              </div>
-
-
+  <div>
+    <div className="choose_bar">
+        <div className="container">
+            <Link to={{pathname: `/movies/`, fromDashboard: false }} >Афиша</Link>
+            <Link to={{pathname: `/about/`, fromDashboard: false }}>О нас</Link>
+            <Link to={{pathname: `/contact/`, fromDashboard: false }}>Контакты</Link>
+            <Link href="#">Войти</Link>
         </div>
+    </div>
 
-     </div>
+    <div class="container all_movies_list">
+        {movies.map(m =>(
+            <div className="item" key={m.id} style={{position: "relative", display: "block ruby", width: "100%", padding: "3%",border: "1px solid blueviolet", "margin-bottom": "3%", "background-color": "#1F1F3A", opacity: "90%", "z-index":"1000"}}>
+                <div class="information part" style={{position: "relative", width: "50%"}}>
+                    <div className="item_title info" style={{"font-size": "18px", "text-transform": "uppercase"}}>
+                        <p>{m.movie_name}</p>
+                    </div>
+                    <div className="item_year info" style={{"font-size": "18px", "text-transform": "uppercase"}}>
+                        <p>{m.year}</p>
+                        <p style={{"font-size": "12px", "text-transform": "none"}}>{m.plot}</p>
+                    </div>
+                </div>
+                <div className="button-wrapper part" style={{position: "relative", width: "50%",bottom: "25px"}}>
+                    <Link className="btn btn-gradient" to={{pathname: `/movies/${m.id}/`, fromDashboard: false }}>Подробнее</Link>
+                </div>
+
+            </div>
+        ))}
+
+        <div className="button-wrapper part">
+            <Link className="btn btn-gradient" data-toggle="modal" data-target="#addMovieModal" to={{pathname: `/movies/add`, fromDashboard: false }}>Добавить</Link>
+        </div>
+    </div>
+  </div>
 
   );
 }

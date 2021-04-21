@@ -1,17 +1,10 @@
-import json
-from json.decoder import JSONDecodeError
-
 from django.core.exceptions import ObjectDoesNotExist
-from django.http import HttpResponse, HttpResponseRedirect, JsonResponse
-from django.shortcuts import render, get_object_or_404
-from django.urls import reverse
-from django.shortcuts import get_object_or_404
+from django.shortcuts import render
 from rest_framework import viewsets, status
 from rest_framework.response import Response
-from rest_framework.views import APIView
 
-from .serializers import *
 from poster.models import Movie, Actor, Producer, Country, Genre
+from .serializers import *
 
 
 def index(request):
@@ -151,36 +144,6 @@ class MoviesViewSet(viewsets.ModelViewSet):
 
     def perform_destroy(self, instance):
         instance.delete()
-
-'''
-        movie_name = Movie.objects.get(movie_name=data['movie_name'])
-        movie_obj.movie_name.clean()
-        movie_obj.movie_name.add(movie_name)
-
-        movie_year = Movie.objects.get(year=data['year'])
-        movie_obj.movie_name.clean()
-        movie_obj.movie_name.add(movie_name)
-
-        for genre in data['genre']:
-            genre_obj = Genre.objects.get(genre_name=genre['genre_name'])
-            movie_obj.genre.clean(genre_obj)
-            movie_obj.genre.add(genre_obj)
-
-        movie_obj.movie_name = movie_name
-        movie_obj.year = data['year']
-        movie_obj.type = data['type']
-        movie_obj.actor = data['actor']
-        movie_obj.producer = data['producer']
-        movie_obj.country = data['country']
-        movie_obj.genre = data['genre']
-        movie_obj.plot = data['plot']
-
-        movie_obj.save()
-
-        serializer = MoviesSerializer(movie_obj)
-
-        return Response(serializer.data)
-'''
 
 
 class GenresViewSet(viewsets.ModelViewSet):

@@ -21,18 +21,19 @@ function DeleteMovie({match}){
 
   return (
   <div>
-  <div className="choose_bar">
-                <div className="container">
-                    <Link to={{pathname: `/movies/`, fromDashboard: false }} >Афиша</Link>
-                    <Link to={{pathname: `/about/`, fromDashboard: false }}>О нас</Link>
-                    <Link to={{pathname: `/contact/`, fromDashboard: false }}>Контакты</Link>
-                    <Link href="#">Войти</Link>
-                </div>
-            </div>
-      <div className="container" style={{"text-align": "center"}}>
-    <div style={{"text-align": "center", "font-size": "25px", padding: "50px"}}>Фильм удален</div>
-     <Link className="btn btn-gradient" style={{"margin-bottom": "20%"}} to={{pathname: `/movies`, fromDashboard: false }}>К списку фильмов</Link>
-  </div>
+    <div className="choose_bar">
+        <div className="container">
+            <Link to={{pathname: `/movies/`, fromDashboard: false }} >Афиша</Link>
+            <Link to={{pathname: `/about/`, fromDashboard: false }}>О нас</Link>
+            <Link to={{pathname: `/contact/`, fromDashboard: false }}>Контакты</Link>
+            <Link href="#">Войти</Link>
+        </div>
+    </div>
+
+    <div className="container" style={{"text-align": "center"}}>
+        <div style={{"text-align": "center", "font-size": "25px", padding: "50px"}}>Фильм удален</div>
+        <Link className="btn btn-gradient" style={{"margin-bottom": "20%"}} to={{pathname: `/movies`, fromDashboard: false }}>К списку фильмов</Link>
+    </div>
   </div>
   );
 }

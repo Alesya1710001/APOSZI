@@ -1,5 +1,4 @@
 from django.contrib import admin
-
 from poster.models import Movie, Country, Producer, Genre, Actor
 
 admin.site.register(Movie)
